@@ -1,0 +1,22 @@
+{
+  "name": "okiduko",
+  "version": "1.0.0",
+  "description": "Stuff for me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boghammar/Okidoku.git"
+  },
+  "author": "anders@boghammar.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boghammar/Okidoku/issues"
+  },
+  "homepage": "https://github.com/boghammar/Okidoku#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
