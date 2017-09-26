@@ -23,18 +23,18 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-  res.render('pages/index.ejs', {pagetitle : title});
+  res.render('pages/index.ejs', setRenderVars({}));
 })
 
 //
 // ----------------------------------- Norrtorp stuff
 //
 app.get('/norrtorp', function (req, res) {
-  res.render('pages/norrtorp/index.ejs', {pagetitle : title});
+  res.render('pages/norrtorp/index.ejs', setRenderVars({}));
 })
 
 app.get('/norrtorp/adresser', function (req, res) {
-  res.render('pages/norrtorp/adresser.ejs', {pagetitle : title});
+  res.render('pages/norrtorp/adresser.ejs', setRenderVars({}));
 })
 
 app.post('/norrtorp', function (req, res) {
@@ -56,6 +56,13 @@ app.listen(app.get('port'), function() {
 
 // -----------------------------------------------------------------
 // Functions
+// -----------------------------------------------------------------
+function setRenderVars(obj) {
+  obj.pagetitle = title;
+  return obj;
+}
+// -----------------------------------------------------------------
+// Express Filters 
 // -----------------------------------------------------------------
 function setTitle(req, res, next) {
   if (req.url.startsWith('/norrtorp')) {
