@@ -7,12 +7,15 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 
+var title = 'Not Set';
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(cookieParser());
 app.use(session({ secret: 'example', resave: false, saveUninitialized : true }));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(checkAuth);
+app.use(setTitle);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -20,18 +23,18 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-  res.render('pages/index.ejs');
+  res.render('pages/index.ejs', {pagetitle : title});
 })
 
 //
 // ----------------------------------- Norrtorp stuff
 //
 app.get('/norrtorp', function (req, res) {
-  res.render('pages/norrtorp/index.ejs');
+  res.render('pages/norrtorp/index.ejs', {pagetitle : title});
 })
 
 app.get('/norrtorp/adresser', function (req, res) {
-  res.render('pages/norrtorp/adresser.ejs');
+  res.render('pages/norrtorp/adresser.ejs', {pagetitle : title});
 })
 
 app.post('/norrtorp', function (req, res) {
@@ -53,6 +56,15 @@ app.listen(app.get('port'), function() {
 
 // -----------------------------------------------------------------
 // Functions
+// -----------------------------------------------------------------
+function setTitle(req, res, next) {
+  if (req.url.startsWith('/norrtorp')) {
+    title = 'Norrtorp';
+  } else {
+    title = 'Boghammar';    
+  }
+  next();
+}
 // -----------------------------------------------------------------
 function checkAuth(req, res, next) {
     console.log('checkAuth ' + req.url);
