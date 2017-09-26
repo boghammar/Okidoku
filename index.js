@@ -21,11 +21,17 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
   res.render('pages/index.ejs');
-  //res.send('Hello World!')
 })
 
+//
+// ----------------------------------- Norrtorp stuff
+//
 app.get('/norrtorp', function (req, res) {
   res.render('pages/norrtorp/index.ejs');
+})
+
+app.get('/norrtorp/adresser', function (req, res) {
+  res.render('pages/norrtorp/adresser.ejs');
 })
 
 app.post('/norrtorp', function (req, res) {
@@ -33,16 +39,21 @@ app.post('/norrtorp', function (req, res) {
     req.session.authenticated = true;
     res.redirect('/norrtorp/adresser');
   } else {
-    req.flash('error', 'Incorrect password');
+    //req.flash('error', 'Incorrect password');
     res.redirect('/norrtorp');
   }
 })
 
+//
+// ----------------------------------- Start the APP
+//
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-// --------------------
+// -----------------------------------------------------------------
+// Functions
+// -----------------------------------------------------------------
 function checkAuth(req, res, next) {
     console.log('checkAuth ' + req.url);
   
