@@ -47,6 +47,12 @@ app.post('/norrtorp', function (req, res) {
   }
 })
 
+app.get('/norrtorp/logout', function (req, res) {
+  delete req.session.authenticated;
+  res.redirect('/norrtorp');
+})
+
+
 //
 // ----------------------------------- Start the APP
 //
@@ -78,7 +84,7 @@ function checkAuth(req, res, next) {
   
     // don't serve /secure to those not logged in
     // you should add to this list, for each and every secure url
-    if (req.url === '/secure' && (!req.session || !req.session.authenticated)) {
+    if (req.url === '/norrtorp/adresser' && (!req.session || !req.session.authenticated)) {
       res.render('unauthorised', { status: 403 });
       return;
     }
