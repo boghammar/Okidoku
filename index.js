@@ -85,7 +85,7 @@ function checkAuth(req, res, next) {
     // don't serve /secure to those not logged in
     // you should add to this list, for each and every secure url
     if (req.url === '/norrtorp/adresser' && (!req.session || !req.session.authenticated)) {
-      res.render('unauthorised', { status: 403 });
+      res.render('/norrtorp/unauthorised.ejs', setRenderVars({ status: 403 }));
       return;
     }
   
