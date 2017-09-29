@@ -11,10 +11,22 @@
         <% include ../../partials/header %>
     </header>
 
-    <main>
+    <main id="adresslista">
         <div>
             <h2>Adresser</h2>
-            </p>
+            <table class="table table-striped">
+                <tr><th>Namn</th><th>E-post</th><th>Fastighet</th><th></th></tr>
+                <tr v-for="(person, index) in adresser">
+                    <td>{{person.name}}</td>
+                    <td>{{person.mail}}</td>
+                    <td>{{person.fastighet}}</td>
+                    <td>
+                        <button type='button' class='btn btn-default' v-on:click="editAdress(index)">
+                            <span class='glyphicon glyphicon-pencil'></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </main>
 

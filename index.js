@@ -73,8 +73,10 @@ function setRenderVars(obj) {
 function setTitle(req, res, next) {
   if (req.url.startsWith('/norrtorp')) {
     title = 'Norrtorp';
+    extrascript = '/js/norrtorp.js';
   } else {
     title = 'Boghammar';    
+    extrascript = '/js/boghammar.js';
   }
   next();
 }
