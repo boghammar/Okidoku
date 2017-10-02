@@ -15,32 +15,39 @@
         <div>
             <h2>Adresser</h2>
             <table class="table table-striped">
+                <thead>
                 <tr>
+                    <th><br />Filter:</th>
                     <th>Namn<br /><input type='text' v-model='searchName' /></th>
-                    <th>E-post</th><th>Fastighet</th><th></th>
+                    <th>E-post<br /><input type='text' v-model='searchMail' /></th>
+                    <th>Fastighet<br /><input type='text' v-model='searchProperty' /></th><th></th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr v-for="(person, index) in filteredItems">
+                    <td>&nbsp;</td>
                     <td>{{person.name}}</td>
                     <td>{{person.mail}}</td>
                     <td>{{person.fastighet}}</td>
                     <td>
-                        <button type='button' class='btn btn-default' v-on:click="editAdress(index)">
+                        <button type='button' class='btn btn-default' v-on:click="editAdress(index)" title='Edit this'>
                             <span class='glyphicon glyphicon-pencil'></span>
                         </button>
-                        <button type='button' class='btn btn-default' v-on:click="removeAdress(index)">
+                        <button type='button' class='btn btn-default' v-on:click="removeAdress(index)" title='Remove this'>
                                 <span class='glyphicon glyphicon-remove'></span>
                         </button>
                         <span v-if='person.validated'>
-                            <span class='btn btn-default btn-success'>
+                            <span class='btn btn-default btn-success' title='This email has been verified'>
                             <span class='glyphicon glyphicon-ok'></span></span>
                         </span>
                         <span v-else>
-                            <button type='button' class='btn btn-default btn-warning' v-on:click="sendValidation(index)">
+                            <button type='button' class='btn btn-default btn-warning' v-on:click="sendValidation(index)" title='Send a new verification mail'>
                                 <span class='glyphicon glyphicon-refresh'></span>
                             </button>
                         </span>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </main>
