@@ -59,7 +59,10 @@ app.post('/norrtorp/newmail', function (req, res) {
   console.log('Got a new email message');
   //console.log(req);
   console.log(req.headers);
+  console.log('req.body');
   console.log(req.body);
+  console.log('req.message');
+  console.log(req.message);
   res.render('pages/norrtorp/adresser.ejs', setRenderVars({}));
 })
 
