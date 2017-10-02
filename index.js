@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
+var password = require('./app/password');
 
 var title = 'Not Set';
 
@@ -38,9 +39,16 @@ app.get('/norrtorp/adresser', function (req, res) {
 })
 
 app.post('/norrtorp', function (req, res) {
-  if (req.body.password && req.body.password === '1234') {
-    req.session.authenticated = true;
-    res.redirect('/norrtorp/adresser');
+  if (req.body.password ) {
+    password.compare(req.body.password, '$2a$10$F1bjmkmY7jc8ZZxA9waUJ.t8HZXir.d20V8r2zC17q4WiQvtI9IJi', function(err, ok) {//req.body.password === '1234') {
+      if (ok) {
+        req.session.authenticated = true;
+        res.redirect('/norrtorp/adresser');
+      } else {
+        //req.flash('error', 'Incorrect password');
+        res.redirect('/norrtorp');
+      }
+    });
   } else {
     //req.flash('error', 'Incorrect password');
     res.redirect('/norrtorp');
