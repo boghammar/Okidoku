@@ -3,8 +3,8 @@ window.addEventListener('load', function () {
         el: '#adresslista',
         data: {
             adresser : [
-                {id: 1, name: 'Kalle', mail: 'a@b.com', fastighet: '3:2'},
-                {id: 2, name: 'Nisse', mail: 'a@b.se', fastighet: '3:12'},
+                {id: 1, name: 'Kalle', mail: 'a@b.com', fastighet: '3:2', validated: true},
+                {id: 2, name: 'Nisse', mail: 'a@b.se', fastighet: '3:12', validated: false},
             ]
         },
         methods : {

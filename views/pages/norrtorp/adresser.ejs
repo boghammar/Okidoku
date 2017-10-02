@@ -11,7 +11,7 @@
         <% include ../../partials/header %>
     </header>
 
-    <main id="adresslista">
+    <main id="adresslista" style='width: 90%;margin-left:20px;'>
         <div>
             <h2>Adresser</h2>
             <table class="table table-striped">
@@ -24,6 +24,18 @@
                         <button type='button' class='btn btn-default' v-on:click="editAdress(index)">
                             <span class='glyphicon glyphicon-pencil'></span>
                         </button>
+                        <button type='button' class='btn btn-default' v-on:click="removeAdress(index)">
+                                <span class='glyphicon glyphicon-remove'></span>
+                        </button>
+                        <span v-if='person.validated'>
+                            <span class='btn btn-default'>
+                            <span class='glyphicon glyphicon-ok'></span></span>
+                        </span>
+                        <span v-else>
+                            <button type='button' class='btn btn-default' v-on:click="sendValidation(index)">
+                                <span class='glyphicon glyphicon-refresh'></span>
+                            </button>
+                        </span>
                     </td>
                 </tr>
             </table>
