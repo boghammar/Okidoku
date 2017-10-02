@@ -55,7 +55,7 @@ app.post('/norrtorp', function (req, res) {
   }
 })
 
-app.get('/norrtorp/newmail', function (req, res) {
+app.post('/norrtorp/newmail', function (req, res) {
   res.render('pages/norrtorp/adresser.ejs', setRenderVars({}));
 })
 
