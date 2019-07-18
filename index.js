@@ -27,20 +27,23 @@ app.get('/', function (req, res) {
   res.render('pages/index.ejs', setRenderVars({}));
 })
 
-//
-// ----------------------------------- Norrtorp stuff
+// -------------------------------------------------------------------
+// --------------------------------------------------- Norrtorp stuff
+// -------------------------------------------------------------------
 //
 app.get('/norrtorp', function (req, res) {
   res.render('pages/norrtorp/index.ejs', setRenderVars({}));
 })
 
+// -------------------------------------------------------------------
 app.get('/norrtorp/adresser', function (req, res) {
   res.render('pages/norrtorp/adresser.ejs', setRenderVars({}));
 })
 
+// -------------------------------------------------------------------
 app.post('/norrtorp', function (req, res) {
   if (req.body.password ) {
-    password.compare(req.body.password, '$2a$10$F1bjmkmY7jc8ZZxA9waUJ.t8HZXir.d20V8r2zC17q4WiQvtI9IJi', function(err, ok) {//req.body.password === '1234') {
+    password.compare(req.body.password, '$2a$10$9pTczy4laB4NbRQ0X2gjPulLJCaiwIu5p3KZP4aOIkeG9tCrRqbk2', function(err, ok) {//req.body.password === '1234') {
       if (ok) {
         req.session.authenticated = true;
         res.redirect('/norrtorp/adresser');
@@ -55,6 +58,7 @@ app.post('/norrtorp', function (req, res) {
   }
 })
 
+// -------------------------------------------------------------------
 app.post('/norrtorp/newmail', function (req, res) {
   console.log('Got a new email message');
   //console.log(req);
@@ -69,6 +73,7 @@ app.post('/norrtorp/newmail', function (req, res) {
   res.render('pages/norrtorp/adresser.ejs', setRenderVars({}));
 })
 
+// -------------------------------------------------------------------
 app.get('/norrtorp/logout', function (req, res) {
   delete req.session.authenticated;
   res.redirect('/norrtorp');
