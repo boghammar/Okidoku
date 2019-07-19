@@ -8,6 +8,25 @@ var bodyParser = require('body-parser');
 var app = express();
 var password = require('./app/password');
 
+// -------------------------------------------------------------------
+// Database setup
+// -------------------------------------------------------------------
+const { Client } = require('pg');
+console.log('Connecting to database:' + process.env.DATABASE_URL);
+const dbClient = new Client({
+  connectionString: process.env.DATABASE_URL,
+  //ssl: true,
+});
+
+dbClient.connect();
+
+dbClient.query('SELECT * FROM test', (err, res) => {
+  if (err) throw err
+  console.log(res)
+  client.end()
+})
+
+// -------------------------------------------------------------------
 var title = 'Not Set';
 
 app.set('port', (process.env.PORT || 5000));
